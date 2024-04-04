@@ -1,0 +1,23 @@
+#!/bin/bash
+# ContactList - CTCL 2023-2024
+# File: runner
+# Purpose: Shell script for the automatic updating of the database and starting the web application
+# Created: April 4, 2024
+# Modified: April 4, 2024
+
+# Is this needed with Rust?
+function showerror {
+    echo "runner ERROR: Management command \"$1\" failed!"
+    # Don't continue if something fails so the app does not try to run with missing files
+    exit
+}
+
+SQLITEDBURL=cat config/config.json | jq ".sqlitedburl"
+
+if [[ $* == *--upd-schema* ]]
+then
+    diesel migration generate --database-url=$SQLITEDBURL create_contacts
+    diesel migration run --database-url=$SQLITEDBURL
+fi
+
+cargo run
