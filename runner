@@ -3,7 +3,7 @@
 # File: runner
 # Purpose: Shell script for the automatic updating of the database and starting the web application
 # Created: April 4, 2024
-# Modified: April 4, 2024
+# Modified: May 1, 2024
 
 # Is this needed with Rust?
 function showerror {
@@ -12,12 +12,33 @@ function showerror {
     exit
 }
 
-SQLITEDBURL=cat config/config.json | jq ".sqlitedburl"
+SQLITEDBURL=$(cat config/config.json | jq -r ".sqlitedburl")
 
-if [[ $* == *--upd-schema* ]]
-then
-    diesel migration generate --database-url=$SQLITEDBURL create_contacts
+cargo build
+
+# "diesel migration generate" apparently does not make its directory and panics instead
+mkdir -p migrations/
+
+if [[ $* == *--force-upd-schema* ]]; then
+    mkdir -p migrations/
+    diesel migration generate --diff-schema=src/schema.rs --database-url=$SQLITEDBURL create_contacts
     diesel migration run --database-url=$SQLITEDBURL
+else 
+    CONFIGHASH=$(cat config/config.json | sha256sum)
+    if [ ! -f .confighash ]; then
+        echo $CONFIGHASH > .confighash
+    else 
+        OLDCONFIGHASH=$(cat .confighash)
+        if [[ "$CONFIGHASH" == "$OLDCONFIGHASH" ]]; then
+            echo "Change in config/config.json detected, creating and running migrations"
+            mkdir -p migrations/
+            diesel migration generate --diff-schema=src/schema.rs --database-url=$SQLITEDBURL create_contacts
+            diesel migration run --database-url=$SQLITEDBURL
+        else
+            echo "config/config.json unchanged"
+        fi
+    fi 
 fi
+
 
 cargo run

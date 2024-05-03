@@ -75,8 +75,8 @@ fn write_file(path: &str, content: &str) {
 }
 
 // Not so clever name for a function that copies a file only if the destination does not exist
-fn copyifdestnotexists(src: String, dest: String) -> Result<(), Error> {
-    if !std::path::Path::new(&src).exists() {
+fn copyifdestnotexists(src: &str, dest: &str) -> Result<(), Error> {
+    if !std::path::Path::new(src).exists() {
         return Err(Error::new(ErrorKind::NotFound, format!("file not found: {src}")));
     }
 
@@ -179,8 +179,15 @@ table! {{
     // Step 3 - Copy over files from node_modules
     // unwrap() so it just panics with whatever error message the function returns
     mkdirifnotexists("static/").unwrap();
-    copyifdestnotexists("node_modules/bootstrap/dist/js/bootstrap.min.js".to_string(), "static/bootstrap.min.js".to_string()).unwrap();
-    copyifdestnotexists("node_modules/jquery/dist/jquery.min.js".to_string(), "static/jquery.min.js".to_string()).unwrap();
-    copyifdestnotexists("node_modules/tablesorter/dist/js/jquery.tablesorter.min.js".to_string(), "static/jquery.tablesorter.min.js".to_string()).unwrap();
-    copyifdestnotexists("node_modules/tablesorter/dist/js/jquery.tablesorter.widgets.min.js".to_string(), "static/jquery.tablesorter.widgets.min.js".to_string()).unwrap();
+    // Bootstrap
+    copyifdestnotexists("node_modules/bootstrap/dist/js/bootstrap.min.js", "static/bootstrap.min.js").unwrap();
+    // jQuery
+    copyifdestnotexists("node_modules/jquery/dist/jquery.min.js", "static/jquery.min.js").unwrap();
+    // Tablesorter
+    copyifdestnotexists("node_modules/tablesorter/dist/js/jquery.tablesorter.min.js", "static/jquery.tablesorter.min.js").unwrap();
+    copyifdestnotexists("node_modules/tablesorter/dist/js/jquery.tablesorter.widgets.min.js", "static/jquery.tablesorter.widgets.min.js").unwrap();
+    // Font Awesome
+    //copyifdestnotexists(src, dest).unwrap();
+    // CKEditor
+    copyifdestnotexists("node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js", "static/ckeditor.js").unwrap();
 }

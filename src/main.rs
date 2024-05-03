@@ -2,7 +2,7 @@
 // File: src/main.rs
 // Purpose: Main code
 // Created: March 22, 2024
-// Modified: April 2, 2024
+// Modified: April 30, 2024
 
 use actix_files as fs;
 use actix_web::{
@@ -31,6 +31,7 @@ async fn main() -> std::io::Result<()> {
             .app_data(web::Data::new(globalcfg))
             .wrap(middleware::NormalizePath::new(middleware::TrailingSlash::Always))
             .service(web::resource("/").route(web::get().to(index)))
+            .service(web::resource("/new/").route(web::get().to(new)))
             
     })
     .bind((bindip, bindport))?

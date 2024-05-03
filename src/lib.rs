@@ -2,7 +2,7 @@
 // File: src/lib.rs
 // Purpose: Commonly used code
 // Created: March 22, 2024
-// Modified: April 1, 2024
+// Modified: May 1, 2024
 
 use indexmap::IndexMap;
 use std::collections::HashMap;
@@ -74,10 +74,43 @@ pub struct NavbarItem {
     pub ntype: Option<String>
 }
 
+#[derive(Deserialize, Serialize, Clone, Debug)]
+pub struct DataSelect {
+    col: String,
+    cat: String,
+    dropdown: String,
+}
+
+#[derive(Deserialize, Serialize, Clone, Debug)]
+pub struct DataString {
+    col: String,
+    cat: String,
+    max: u16,
+}
+
+// Only difference between String and Text is that Text is displayed using the <textarea> tags
+#[derive(Deserialize, Serialize, Clone, Debug)]
+pub struct DataText {
+    col: String,
+    cat: String,
+    max: u16,
+}
+
+#[derive(Deserialize, Serialize, Clone, Debug)]
+#[serde(tag = "datatype")]
+pub enum DataType {
+    #[serde(alias = "string")]
+    String(DataString),
+    #[serde(alias = "text")]
+    Text(DataText),
+    #[serde(alias = "select")]
+    Select(DataSelect)
+}
+
 #[derive(Deserialize, Serialize, Clone)]
 pub struct GlobalCfg {
     pub tablecats: HashMap<String, String>,
-    // "tables" field may not be needed here
+    pub table: Vec<DataType>,
     pub headers: IndexMap<String, String>,
     pub htmltable: Vec<HtmlTableKind>,
     pub dropdown: HashMap<String, IndexMap<String, String>>,

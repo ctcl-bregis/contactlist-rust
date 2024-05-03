@@ -1,4 +1,19 @@
 {% include "header.html" %}
         <h1>New Contact</h1>
-        <hr>
+        
+        <form>
+            {% for field in form %}
+            {% if field. %}
+            <div id="editor"></div>
+            {% endif %}
+            {% endfor %}
+        </form>
+        <script>
+            document.body.querySelectorAll("#editor").forEach(function(node) {
+                ClassicEditor.create( node )
+                .catch( error => {
+                    console.error( error );
+                } ); 
+            });
+        </script>
 {% include "footer.html" %}
