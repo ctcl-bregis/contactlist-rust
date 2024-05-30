@@ -15,6 +15,7 @@ Rust rewrite of ContactList adding Bootstrap theming.
 
 ### Changes
 - config/config.json layout changed to make deserialization by Serde easier
+- ContactList now uses CouchDB instead of SQLite3 for data storage
 
 ### Fixes
 - Date ordering on tables

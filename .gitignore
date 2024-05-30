@@ -22,10 +22,7 @@ schema.rs
 models.rs
 .confighash
 
-# Data
-data/
-migrations/
-*.db
-
 # Downloaded files
 node_modules/
+
+config_private.json

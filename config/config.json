@@ -343,7 +343,10 @@
         }
     ],
     "strftime": "%b %-d, %Y, %H:%M %Z",
-    "sqlitedburl": "data.db",
+    "cdburl": "",
+    "cdbuser": "", 
+    "cdbpass": "",
+    "cdbdb": "",
     "bindip": "0.0.0.0",
     "bindport": 8000
 }
