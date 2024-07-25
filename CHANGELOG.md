@@ -1,7 +1,7 @@
 # ContactList-rust
 
 ## 0.1.0 - [UNRELEASED] - Rust Update
-Rust rewrite of ContactList adding Bootstrap theming.
+Rust rewrite of ContactList adding Bootstrap theming and the switch to CouchDB from SQL databases such as SQLite3.
 
 ### Additions
 - Bootstrap theming
@@ -9,6 +9,7 @@ Rust rewrite of ContactList adding Bootstrap theming.
 - Edit button on view pages
 - More social media platforms added to the base configuration
 - WYSIWYG editor for text
+- Optional "notes" per field
 
 ### Removed
 - Theme switcher, for now

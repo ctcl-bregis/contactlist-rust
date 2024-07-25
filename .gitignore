@@ -25,4 +25,5 @@ models.rs
 # Downloaded files
 node_modules/
 
-config_private.json
+# DB config
+config/connection.json

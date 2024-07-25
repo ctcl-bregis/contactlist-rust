@@ -1,0 +1,1 @@
+This document covers the function of build.rs

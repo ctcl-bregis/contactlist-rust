@@ -8,8 +8,6 @@ build = "src/build.rs"
 
 [build-dependencies]
 chrono = "0.4.35"
-grass = "0.13.2"
-grass_compiler = "0.13.2"
 hex = "0.4.3"
 image = "0.24.9"
 indexmap = { version = "2.2.5", features = ["serde"] }

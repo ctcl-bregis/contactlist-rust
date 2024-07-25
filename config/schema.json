@@ -1,0 +1,110 @@
+{
+    "fields": {
+        "name": {
+            "title": "Contact Name",
+            "type": "string",
+            "cat": "personal",
+            "max": 64
+        },
+        "irln": {
+            "title": "Real Life Name",
+            "type": "string",
+            "cat": "personal",
+            "max": 1024
+        },
+        "nick": {
+            "title": "Nicknames",
+            "type": "string",
+            "cat": "personal",
+            "max": 1024
+        },
+        "prns": {
+            "title": "Pronouns",
+            "type": "string",
+            "cat": "personal",
+            "max": 40
+        },
+        "birt": {
+            "title": "Birthday",
+            "type": "string",
+            "cat": "personal",
+            "max": 1024
+        },
+        "loca": {
+            "title": "Location",
+            "type": "textarea",
+            "cat": "personal",
+            "max": 4096
+        },
+        "dtmt": {
+            "title": "Date Met",
+            "type": "textarea",
+            "cat": "personal",
+            "max": 4096
+        },
+        "appe": {
+            "title": "Appearance",
+            "type": "textarea",
+            "cat": "personal",
+            "max": 4096
+        },
+        "some": {
+            "type": "multiddstring",
+            "cat": "contact",
+            "max": 32,
+            "dd": "socials",
+            "ddtitle": "Social Media Platform",
+            "sttitle": "Social Media Username/Link"
+        },
+        "empl": {
+            "title": "Employment and Education",
+            "type": "textarea",
+            "cat": "other",
+            "max": 4096
+        },
+        "note": {
+            "title": "Notes",
+            "type": "textarea",
+            "cat": "other",
+            "max": 4096
+        }
+
+    },
+    "cats": {
+        "personal": "Personal Information",
+        "contact": "Contact Information",
+        "relation": "Relation",
+        "other": "Other"
+    },
+    "dropdown": {
+        "socials": {
+            "capp": "Cash App",
+            "disc": "Discord",
+            "ebay": "eBay",
+            "emai": "E-mail",
+            "epic": "Epic Games",
+            "face": "Facebook",
+            "gith": "GitHub",
+            "gitr": "Gitter",
+            "inst": "Instagram",
+            "link": "LinkedIn",
+            "mast": "Mastodon",            
+            "matx": "Matrix",
+            "nphn": "Phone Number",
+            "payp": "PayPal",
+            "pweb": "Personal Website",
+            "redd": "Reddit",
+            "riot": "Riot Games",
+            "rock": "Rocket.Chat",
+            "skyp": "Skype",
+            "snap": "Snapchat",
+            "spot": "Spotify",
+            "stea": "Steam",
+            "tikt": "TikTok",
+            "twit": "Twitch",
+            "twtx": "Twitter",
+            "xbox": "Xbox Live",
+            "ytbe": "YouTube"
+        }
+    }
+}
