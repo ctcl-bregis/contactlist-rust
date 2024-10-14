@@ -1,38 +1,24 @@
 // ContactList - CTCL 2023-2024
-// File: src/main.rs
-// Purpose: Main code
-// Created: March 22, 2024
-// Modified: June 13, 2024
+// File: main.rs
+// Purpose: 
+// Created: October 9, 2024
+// Modified: October 12, 2024
 
-use actix_files as fs;
-use actix_web::{
-    middleware, web, App, HttpServer
-};
-use tera::Tera;
-mod routes;
-use routes::*;
-use contactlist::{get_all_configs, Combined};
+
 
 #[actix_web::main]
-async fn main() -> std::io::Result<()> {
-    let combined: Combined = get_all_configs().unwrap();
-    let bindip = combined.config.bindip;
-    let bindport = combined.config.bindport;
-
+async fn main() {
     HttpServer::new(|| {
-        let tera = Tera::new("templates/**/*.html").unwrap();
-        let combined: Combined = get_all_configs().unwrap();
-
         App::new()
             .service(fs::Files::new("/static", "static/"))
-            .app_data(web::Data::new(tera))
-            .app_data(web::Data::new(combined))
-            .wrap(middleware::NormalizePath::new(middleware::TrailingSlash::Always))
-            .service(web::resource("/").route(web::get().to(index)))
-            .service(web::resource("/new/").route(web::get().to(new)))
-            
+            //.app_data(web::Data::new(lysine))
+            //.app_data(web::Data::new(sitecfg))
+            //.app_data(web::Data::new(memclient))
+            .wrap(from_fn(middleware))
     })
-    .bind((bindip, bindport))?
+    // TODO: define this in the config file
+    .bind(("127.0.0.1", "8000"))
+    .workers(cpus)
     .run()
     .await
 }

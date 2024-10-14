@@ -1,46 +1,7 @@
 {
-    "htmltable": [
-        {"type": "info", "col": "name", "width": 20},
-        {"type": "info", "col": "irln", "width": 20},
-        {"type": "infotime", "col": "tmod", "width": 20},
-        {"type": "infotime", "col": "tcrd", "width": 20},
-        {"type": "buttons", "col": "", "width": 20, "buttons": [
-            {"link": "/view", "icon": "fa-solid fa-bars", "text": "View", "bsbtnstyle": "btn-primary"},
-            {"link": "/edit", "icon": "fa-solid fa-pen-to-square", "text": "Edit", "bsbtnstyle": "btn-primary"},
-            {"link": "/delete", "icon": "fa-solid fa-xmark", "text": "Delete", "bsbtnstyle": "btn-danger"}
-        ]}
-    ],
-    "navbar": [
-        {
-            "name": "main",
-            "text": "Main",
-            "link": "/",
-            "float": "left",
-            "type": "link"
-        },
-        {
-            "name": "new",
-            "text": "Add Contact",
-            "link": "/new/",
-            "float": "left",
-            "type": "link"
-        },
-        {
-            "name": "search",
-            "text": "Search",
-            "link": "/search/",
-            "float": "left",
-            "type": "link"
-        },
-        {
-            "name": "settings",
-            "text": "Settings",
-            "link": "/settings/",
-            "float": "right",
-            "type": "link"
-        }
-    ],
-    "strftime": "%b %-d, %Y, %H:%M %Z",
     "bindip": "0.0.0.0",
-    "bindport": 8000
+    "bindport": 8000,
+    "cpus": 1,
+    "defaulttheme": "dark",
+    "navbar": []
 }
